@@ -16,7 +16,7 @@ def third():
 
 @app.route('/forth/<string:id>')
 def forth(id):
-    return f'Id number of this page is {id}'
+    return f'Id number of this page is {21212121}'
 
 if __name__ == '__main__':
     app.run(debug=True)
