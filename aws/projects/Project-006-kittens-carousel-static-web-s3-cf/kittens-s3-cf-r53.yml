@@ -83,7 +83,7 @@ Resources:
           Type: A
           AliasTarget:
             DNSName: !GetAtt KittensCloudfront.DomainName
-            HostedZoneId: Z2FDTNDATAQYW2
+            HostedZoneId: Z2FDTNDATAQYW2 #cloudfront'a özgü hostedzone
             
 Outputs:
   BucketName: 
