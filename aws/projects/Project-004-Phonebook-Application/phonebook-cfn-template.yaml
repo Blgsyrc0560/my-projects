@@ -9,8 +9,7 @@ Parameters:
 
   KeyName:
     Description: Please enter your Key pair
-    Type: String
-    AllowedPattern: (?!-)[a-zA-Z0-9-.]{1,63}(?<!-)
+    Type: AWS::EC2::KeyPair::KeyName
 
   Subnets:
     Description: Please select your subnets used by ALB
