@@ -1,1 +1,3 @@
 Dev ya da Prod klasöründeki değişkenleri kişiselleştirmelisin!!!
+--> Keyname 
+--> Git proje adres yolu(git-adres)
