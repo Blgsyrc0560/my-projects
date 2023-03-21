@@ -1,0 +1,3 @@
+module "kittens" {
+  source = "../modules"
+}
