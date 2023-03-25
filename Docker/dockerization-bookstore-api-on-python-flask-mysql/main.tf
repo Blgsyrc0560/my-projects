@@ -5,12 +5,12 @@ provider "aws" {
 resource "aws_instance" "bookstore" {
   ami           = data.aws_ami.amazon-linux-2.id
   instance_type = "t2.micro"
-  key_name = var.keyname
+  key_name = "first-key"
   vpc_security_group_ids = [aws_security_group.bookstore-sg.id]
   tags = {
     "Name" = "Web Server of Bookstore"
   }
-  user_data = data.template_file.bookstore.rendered
+  user_data = file("${path.module}/userdata.sh")
 }
 output "public_dns" {
     value = aws_instance.bookstore.public_dns
@@ -39,13 +39,6 @@ resource "aws_security_group" "bookstore-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-
-data "template_file" "bookstore" {
-  template = "${file("${path.module}/userdata.sh")}"
-  vars = {
-    user-data-git-adres = var.git-adres
-    }
 }
 
 
@@ -78,6 +71,3 @@ data "aws_ami" "amazon-linux-2" {
     values = ["amzn2-ami-kernel-5.10-hvm*"]
   }
 }
-
-variable "git-adres" {}
-variable "keyname" {}

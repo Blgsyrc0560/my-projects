@@ -14,4 +14,4 @@ curl -s --create-dirs -o "/home/ec2-user/main.tf" -L "$FOLDER"/main.tf
 curl -s --create-dirs -o "/home/ec2-user/docker-compose.yml" -L "$FOLDER"/docker-compose.yml
 curl -s --create-dirs -o "/home/ec2-user/requirements.txt" -L "$FOLDER"/requirements.txt
 curl -s --create-dirs -o "/home/ec2-user/userdata.sh" -L "$FOLDER"/userdata.sh
-docker-compose up
+docker-compose up -d
