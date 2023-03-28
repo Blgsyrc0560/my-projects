@@ -1,5 +1,23 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+    github = {
+      source = "integrations/github"
+      version = "~> 5.0"
+    }
+  }
+}
+
+
+provider "github" {
+ token = "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"
+}
+
 provider "aws" {
-  region  = "us-east-1"
+  region = "us-east-1"
 }
 
 resource "aws_instance" "bookstore" {
@@ -12,9 +30,13 @@ resource "aws_instance" "bookstore" {
   }
   user_data = file("${path.module}/userdata.sh")
 }
+
 output "public_dns" {
     value = aws_instance.bookstore.public_dns
 }
+
+
+
 resource "aws_security_group" "bookstore-sg" {
   name = "bookstore-sec-grp"
   description = "Allow HTTP and SSH traffic via Terraform"
@@ -70,4 +92,19 @@ data "aws_ami" "amazon-linux-2" {
     name   = "name"
     values = ["amzn2-ami-kernel-5.10-hvm*"]
   }
+}
+
+
+variable "files" {
+  default = ["bookstore-api.py", "requirements.txt", "Dockerfile", "docker-compose.yml"]
+}
+
+resource "github_repository_file" "app-files" {
+  for_each = toset(var.files)
+  content = file(each.value)
+  file ="Docker/dockerization-bookstore-api-on-python-flask-mysql/${each.value}"
+  repository = "my-projects"
+  branch = "main"
+  commit_message = "managed by terraform"
+  overwrite_on_create = true
 }
