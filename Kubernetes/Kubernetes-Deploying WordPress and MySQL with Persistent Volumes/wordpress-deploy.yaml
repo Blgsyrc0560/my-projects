@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpres-deployment
+  labels:
+    app: wordpress
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: nginx
+        image: wordpress
+        ports:
+        - containerPort: 80
+        envFrom:
+          - secretRef:
+              name: wpsecret
+          - configMapRef:
+              name: wpconfig    
+        volumeMounts:
+          - mountPath: /var/www/html
+            name: deborah   
+      volumes:
+        - name: deborah
+          persistentVolumeClaim:
+            claimName: pvc-wordpress
