@@ -23,8 +23,8 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               value: admin
             - name: MYSQL_DATABASE
-              value: phpdb
+              value: mydatabase
             - name: MYSQL_USER
-              value: BEKİR
+              value: bekir
             - name: MYSQL_PASSWORD
-              value: bekir1234..
+              value: 123456789

@@ -3,15 +3,14 @@ kind: Service
 metadata:
   name: web-service
   labels:
-    name: web
     app: php-app
 spec:
   selector:
-    name: web 
+    app: php-app
   type: NodePort
   ports:
    - name: http
-     port: 8080
+     port: 80
      targetPort: 80
      nodePort: 30001
      protocol: TCP

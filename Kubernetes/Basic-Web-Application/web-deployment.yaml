@@ -14,9 +14,6 @@ spec:
     spec:
       containers:
         - name: php-app
-          image: blgsyrc0560/websitephp:1.0
+          image: blgsyrc0560/web-server-php:3.0
           ports:
             - containerPort: 80
-          env:
-            - name: DB_HOST
-              value: mysql-service
