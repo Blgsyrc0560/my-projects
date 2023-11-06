@@ -5,9 +5,9 @@
 //$database = "mydatabase";
 
 $servername = $_ENV['DB_HOST'];
-$username   = $_ENV['DB_USERNAME'];
-$password   = $_ENV['DB_PASSWORD'];
-$database   = $_ENV['DB_DATABASE'];
+$username   = $_ENV['MYSQL_USER'];
+$password   = $_ENV['MYSQL_PASSWORD'];
+$database   = $_ENV['MYSQL_DATABASE'];
 
 // Connection
 $conn = new mysqli($servername, $username, $password, $database);
